@@ -4,7 +4,6 @@ const axios = require('axios');
 const URL = 'https://swapi.dev/api/people/';
 
 
-
 const getPerson = async(getURL, res) => {
   const resultPerson = await axios.get(getURL);
   const name = resultPerson.data.name;
@@ -34,9 +33,6 @@ const getPerson = async(getURL, res) => {
               </tr>
             </table>`)
 }
-
-  
-
 
 router.get('/:param1', (req, res) => {
   const getURL = `${URL}${req.params.param1}`;
