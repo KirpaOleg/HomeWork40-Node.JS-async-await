@@ -1,26 +1,28 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-const URL = 'https://swapi.dev/api/';
-let listFilms = '';
-let name = '';
+const URL = 'https://swapi.dev/api/people/';
 
-router.get('/:param1/:param2/', (req, res) => {
 
-  const getURL = `${URL}${req.params.param1}/${req.params.param2}`;
+
+const getPerson = async(getURL, res) => {
+  const resultPerson = await axios.get(getURL);
+  const name = resultPerson.data.name;
+  const films = resultPerson.data.films;
+  let listFilms = '';
+  films.forEach(element => {
+    listFilms += `${element}<br>\n`;
+  });
+  res.send(`<table><tr><td>${name}<br></td></tr><tr><td>${listFilms}</td></tr></table>`)
+}
+
+router.get('/:param1', (req, res) => {
+  const getURL = `${URL}${req.params.param1}`;
+  console.log('>>>>>>', getURL);
  
-  const getPerson = async() => {
-    const resultPerson = await axios.get(getURL);
-    name = resultPerson.data.name;
-    const films = resultPerson.data.films;
-    films.forEach(element => {
-      listFilms += `${element}<br>\n`;
-    });
- 
-  }
-  getPerson()
-
-  res.send(`<table><tr>${name}<br></tr><tr>${listFilms}</tr></table>`);
+  getPerson(getURL, res)
+   
 });
 
 module.exports = router;
+
