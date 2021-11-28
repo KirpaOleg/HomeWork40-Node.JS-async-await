@@ -1,0 +1,19 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+table {
+  border: 2px solid black;
+}
+  tr {
+  height: 80px;
+  text-align: center;
+  border: 2px solid black;
+}
+.header {
+  height: 60px;
+  background-color: forestgreen
+}
